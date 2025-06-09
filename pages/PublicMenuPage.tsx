@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useCallback } from 'react';
 import { Dish, Category } from '../types';
 import { supabaseService } from '../services/supabaseService';
@@ -94,7 +93,7 @@ const PublicMenuPage: React.FC = () => {
       {categories.length > 0 && (
         <section>
             <h2 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3" style={{color: IFOOD_THEME_COLORS.textPrimaryDark}}>Categorias</h2>
-            <div className="flex space-x-2 sm:space-x-3 overflow-x-auto pb-2 sm:pb-3 custom-scrollbar">
+            <div className="flex overflow-x-auto gap-2 sm:gap-3 pb-2 sm:pb-3 whitespace-nowrap scroll-smooth scrollbar-hide">
             <CategoryChip
                 name="Todos"
                 isActive={selectedCategoryId === null}

@@ -37,6 +37,15 @@
       background: #c71220; /* Darker red on hover */
     }
 
+    /* CSS for scrollbar-hide */
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+    .scrollbar-hide {
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+    }
+
 
     /* Custom notification animation */
     @keyframes slide-in-right {
