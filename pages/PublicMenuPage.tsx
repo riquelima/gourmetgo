@@ -4,6 +4,7 @@ import { supabaseService } from '../services/supabaseService';
 import DishCard from '../components/Menu/DishCard';
 import CategoryChip from '../components/Menu/CategoryChip';
 import LoadingSpinner from '../components/Common/LoadingSpinner';
+import ContentAreaSpinner from '../components/Common/ContentAreaSpinner'; // Added import
 import { SearchIcon } from '../components/Common/Icons';
 import Input from '../components/Common/Input';
 import { IFOOD_THEME_COLORS } from '../constants';
@@ -22,7 +23,10 @@ const PublicMenuPage: React.FC = () => {
     setError(null);
     try {
       const [fetchedCategories, fetchedDishes] = await Promise.all([
-        supabaseService.fetchCategories(),
+        // Ensure categories are fetched only if they aren't already, or always if that's the logic.
+        // For this example, assuming categories might change or need refreshing with dishes.
+        // If categories are static after first load, this could be optimized.
+        supabaseService.fetchCategories(), 
         supabaseService.fetchDishes(selectedCategoryId || undefined, searchTerm || undefined)
       ]);
       setCategories(fetchedCategories);
@@ -47,6 +51,7 @@ const PublicMenuPage: React.FC = () => {
     setSearchTerm(event.target.value);
   };
 
+  // Initial full page loader
   if (loading && dishes.length === 0 && categories.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[calc(100vh-200px)]">
@@ -111,16 +116,15 @@ const PublicMenuPage: React.FC = () => {
         </section>
       )}
       
-      {loading && <div className="flex justify-center py-6 sm:py-8"><LoadingSpinner color={IFOOD_THEME_COLORS.red}/></div>}
-
-      {!loading && displayedDishes.length === 0 && (
+      {/* Dish display area: Use ContentAreaSpinner or show dishes/no dishes message */}
+      {loading && !(dishes.length === 0 && categories.length === 0) ? (
+        <ContentAreaSpinner />
+      ) : !loading && displayedDishes.length === 0 ? (
         <div className="text-center py-8 sm:py-10">
           <p className="text-lg sm:text-xl" style={{color: IFOOD_THEME_COLORS.textSecondaryDark}}>Nenhum prato encontrado.</p>
           <p className="text-xs sm:text-sm" style={{color: IFOOD_THEME_COLORS.grayPlaceholder}}>Tente ajustar sua busca ou filtros.</p>
         </div>
-      )}
-
-      {!loading && displayedDishes.length > 0 && (
+      ) : !loading && displayedDishes.length > 0 ? (
         <div>
             <h2 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4" style={{color: IFOOD_THEME_COLORS.textPrimaryDark}}>
               {selectedCategoryId ? categories.find(c=>c.id === selectedCategoryId)?.name : 'Destaques do Cardápio'}
@@ -131,7 +135,7 @@ const PublicMenuPage: React.FC = () => {
             ))}
             </div>
         </div>
-      )}
+      ) : null}
     </div>
   );
 };
