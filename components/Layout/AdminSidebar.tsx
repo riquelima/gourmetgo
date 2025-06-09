@@ -16,6 +16,7 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ sidebarOpen, setSidebarOpen
   const location = useLocation();
   const { pathname } = location;
   const { user, logout } = useAuth();
+  const logoUrl = "https://raw.githubusercontent.com/riquelima/gourmetgo/refs/heads/main/logosite.png";
 
   const trigger = useRef<HTMLButtonElement>(null);
   const sidebar = useRef<HTMLDivElement>(null);
@@ -39,24 +40,24 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ sidebarOpen, setSidebarOpen
     return () => document.removeEventListener('keydown', keyHandler);
   });
 
-  const commonLinkClasses = "flex items-center px-4 py-3 rounded-lg transition-all duration-300 ease-in-out font-medium hover:scale-105 active:scale-95";
+  const commonLinkClasses = "flex items-center px-3 py-2.5 sm:px-4 sm:py-3 rounded-lg transition-all duration-300 ease-in-out font-medium hover:scale-105 active:scale-95 text-sm";
   const activeLinkClasses = `bg-[${IFOOD_THEME_COLORS.red}] text-white`;
   const inactiveLinkClasses = `text-[${IFOOD_THEME_COLORS.textSecondaryDark}] hover:bg-[${IFOOD_THEME_COLORS.pinkBgCategories}] hover:text-[${IFOOD_THEME_COLORS.red}]`;
 
   const navLinks = [
     ...(user?.role === Role.ADMIN ? [
-      { path: ROUTES.ADMIN_DASHBOARD, label: 'Dashboard', icon: <ChartBarIcon className="w-5 h-5 mr-3" /> },
-      { path: ROUTES.ADMIN_MENU, label: 'Gerenciar Cardápio', icon: <DocumentTextIcon className="w-5 h-5 mr-3" /> },
-      { path: ROUTES.ADMIN_ORDERS, label: 'Gerenciar Pedidos', icon: <ShoppingBagIcon className="w-5 h-5 mr-3" /> },
-      { path: ROUTES.ADMIN_SETTINGS, label: 'Configurações', icon: <CogIcon className="w-5 h-5 mr-3" /> },
+      { path: ROUTES.ADMIN_DASHBOARD, label: 'Dashboard', icon: <ChartBarIcon className="w-5 h-5 mr-2 sm:mr-3" /> },
+      { path: ROUTES.ADMIN_MENU, label: 'Gerenciar Cardápio', icon: <DocumentTextIcon className="w-5 h-5 mr-2 sm:mr-3" /> },
+      { path: ROUTES.ADMIN_ORDERS, label: 'Gerenciar Pedidos', icon: <ShoppingBagIcon className="w-5 h-5 mr-2 sm:mr-3" /> },
+      { path: ROUTES.ADMIN_SETTINGS, label: 'Configurações', icon: <CogIcon className="w-5 h-5 mr-2 sm:mr-3" /> },
     ] : []),
     ...(user?.role === Role.ATTENDANT ? [
-      { path: ROUTES.ATTENDANT_ORDERS, label: 'Pedidos', icon: <ShoppingBagIcon className="w-5 h-5 mr-3" /> },
+      { path: ROUTES.ATTENDANT_ORDERS, label: 'Pedidos', icon: <ShoppingBagIcon className="w-5 h-5 mr-2 sm:mr-3" /> },
     ] : []),
   ];
 
   return (
-    <div className={`lg:w-64 ${sidebarOpen ? 'block' : 'hidden'} lg:block`}>
+    <div className={`lg:w-60 xl:w-64 ${sidebarOpen ? 'block' : 'hidden'} lg:block`}> {/* Slightly narrower base for lg */}
       <div
         className={`fixed inset-0 bg-black bg-opacity-30 z-40 lg:hidden lg:z-auto transition-opacity duration-300 ease-in-out ${
           sidebarOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
@@ -68,29 +69,34 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ sidebarOpen, setSidebarOpen
       <div
         id="sidebar"
         ref={sidebar}
-        className={`flex flex-col absolute z-40 left-0 top-0 lg:static lg:left-auto lg:top-auto lg:translate-x-0 transform h-screen overflow-y-scroll lg:overflow-y-auto no-scrollbar w-64 lg:w-64 shrink-0 p-4 transition-all duration-300 ease-in-out border-r
+        className={`flex flex-col absolute z-40 left-0 top-0 lg:static lg:left-auto lg:top-auto lg:translate-x-0 transform h-screen overflow-y-scroll lg:overflow-y-auto no-scrollbar w-60 xl:w-64 shrink-0 p-3 sm:p-4 transition-all duration-300 ease-in-out border-r
           ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}
         style={{backgroundColor: IFOOD_THEME_COLORS.white, borderColor: IFOOD_THEME_COLORS.grayInputBorder}}
       >
-        <div className="flex justify-between mb-10 pr-3 sm:px-2">
+        <div className="flex justify-between items-start mb-8 sm:mb-10 pr-2 sm:pr-3">
           <Link to={user?.role === Role.ADMIN ? ROUTES.ADMIN_DASHBOARD : ROUTES.ATTENDANT_ORDERS} className="block transition-transform duration-300 hover:scale-105 active:scale-95">
-            <h1 className="text-2xl font-bold" style={{color: IFOOD_THEME_COLORS.red}}>GourmetGo</h1>
-            <p className="text-xs font-normal" style={{color: IFOOD_THEME_COLORS.textSecondaryDark}}>Painel {user?.role === Role.ADMIN ? 'Admin' : 'Atendente'}</p>
+            <div className="flex items-center space-x-2">
+              <img src={logoUrl} alt="GourmetGo Logo" className="h-8 w-auto sm:h-10" />
+              <div>
+                <h1 className="text-xl sm:text-2xl font-bold" style={{color: IFOOD_THEME_COLORS.red}}>GourmetGo</h1>
+                <p className="text-xs font-normal" style={{color: IFOOD_THEME_COLORS.textSecondaryDark}}>Painel {user?.role === Role.ADMIN ? 'Admin' : 'Atendente'}</p>
+              </div>
+            </div>
           </Link>
           <button
             ref={trigger}
-            className="lg:hidden transition-transform duration-300 hover:scale-110 active:scale-95"
+            className="lg:hidden transition-transform duration-300 hover:scale-110 active:scale-95 p-1"
             style={{color: IFOOD_THEME_COLORS.textSecondaryDark}}
             onClick={() => setSidebarOpen(!sidebarOpen)}
             aria-controls="sidebar"
             aria-expanded={sidebarOpen}
           >
             <span className="sr-only">Close sidebar</span>
-            <XIcon className="w-6 h-6" />
+            <XIcon className="w-5 h-5 sm:w-6 sm:h-6" />
           </button>
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-1.5 sm:space-y-2">
           {navLinks.map(link => {
             const isActive = pathname.startsWith(link.path);
             return (
@@ -100,20 +106,20 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ sidebarOpen, setSidebarOpen
                 className={`${commonLinkClasses} ${isActive ? activeLinkClasses : inactiveLinkClasses}`}
                 onClick={() => sidebarOpen && setSidebarOpen(false)}
               >
-                {React.cloneElement(link.icon, { className: `w-5 h-5 mr-3 ${isActive ? 'text-white' : `text-[${IFOOD_THEME_COLORS.textSecondaryDark}] group-hover:text-[${IFOOD_THEME_COLORS.red}]`}`})}
+                {React.cloneElement(link.icon, { className: `w-5 h-5 mr-2 sm:mr-3 ${isActive ? 'text-white' : `text-[${IFOOD_THEME_COLORS.textSecondaryDark}] group-hover:text-[${IFOOD_THEME_COLORS.red}]`}`})}
                 <span>{link.label}</span>
               </Link>
             )
            })}
         </div>
-        
-        <div className="mt-auto pt-4 space-y-2">
+
+        <div className="mt-auto pt-4 space-y-1.5 sm:space-y-2">
            <Link
               to={ROUTES.HOME}
-              className={`${commonLinkClasses} ${inactiveLinkClasses}`} 
+              className={`${commonLinkClasses} ${inactiveLinkClasses}`}
               onClick={() => sidebarOpen && setSidebarOpen(false)}
             >
-              <HomeIcon className="w-5 h-5 mr-3" />
+              <HomeIcon className="w-5 h-5 mr-2 sm:mr-3" />
               <span>Ver Site Público</span>
             </Link>
           <button
@@ -123,7 +129,7 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ sidebarOpen, setSidebarOpen
             }}
             className={`${commonLinkClasses} ${inactiveLinkClasses} w-full`}
           >
-            <LogoutIcon className="w-5 h-5 mr-3" />
+            <LogoutIcon className="w-5 h-5 mr-2 sm:mr-3" />
             <span>Sair</span>
           </button>
         </div>

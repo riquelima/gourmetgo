@@ -140,11 +140,11 @@ const AdminMenuManagementPage: React.FC = () => {
       setLoading(true); 
       try {
         await supabaseService.deleteDish(dishId);
-        fetchDishesAndCategories(); // Refreshes list, setLoading will be handled by it
+        fetchDishesAndCategories();
       } catch (err) {
         console.error("Failed to delete dish:", err);
         setFormError('Erro ao excluir o prato.'); 
-        setLoading(false); // Manually set loading if fetchDishesAndCategories isn't called or fails
+        setLoading(false);
       }
     }
   };
@@ -152,31 +152,33 @@ const AdminMenuManagementPage: React.FC = () => {
   const categoryOptions = categories.map(cat => ({ value: cat.id, label: cat.name }));
 
   return (
-    <div className="space-y-6 md:space-y-8">
-      <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-        <h1 className="text-2xl md:text-3xl font-semibold" style={{color: IFOOD_THEME_COLORS.textPrimaryDark}}>Gerenciar Cardápio</h1>
-        <Button onClick={openModalForCreate} leftIcon={<PlusCircleIcon className="w-5 h-5"/>} variant="primary" size="md"> 
+    <div className="space-y-4 sm:space-y-6 md:space-y-8">
+      <div className="flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4">
+        <h1 className="text-xl sm:text-2xl md:text-3xl font-semibold" style={{color: IFOOD_THEME_COLORS.textPrimaryDark}}>Gerenciar Cardápio</h1>
+        <Button onClick={openModalForCreate} leftIcon={<PlusCircleIcon className="w-4 h-4 sm:w-5 sm:h-5"/>} variant="primary" size="sm" className="w-full sm:w-auto"> 
           Novo Prato
         </Button>
       </div>
 
-      <div className="p-4 md:p-5 rounded-xl shadow-md flex flex-col md:flex-row gap-4 items-center" style={{backgroundColor: IFOOD_THEME_COLORS.white}}>
+      <div className="p-3 sm:p-4 md:p-5 rounded-xl shadow-md flex flex-col sm:flex-row gap-3 sm:gap-4 items-center" style={{backgroundColor: IFOOD_THEME_COLORS.white}}>
         <Input 
             type="text"
             placeholder="Buscar prato..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            icon={<SearchIcon />}
-            containerClassName="w-full md:flex-grow"
+            icon={<SearchIcon className="w-4 h-4"/>}
+            containerClassName="w-full sm:flex-grow"
+            className="text-sm"
         />
         <Select
-            placeholder="Todas as Categorias"
+            placeholder="Categorias"
             value={filterCategory}
             onChange={(e) => setFilterCategory(e.target.value)}
             options={[{ value: '', label: 'Todas as Categorias' }, ...categoryOptions]}
-            containerClassName="w-full md:w-auto md:min-w-[200px]"
+            containerClassName="w-full sm:w-auto sm:min-w-[180px]"
+            className="text-sm"
         />
-         <Button onClick={() => fetchDishesAndCategories()} variant="outline" isLoading={loading && dishes.length > 0} leftIcon={<ArrowPathIcon className="w-4 h-4"/>} size="md">
+         <Button onClick={() => fetchDishesAndCategories()} variant="outline" isLoading={loading && dishes.length > 0} leftIcon={<ArrowPathIcon className="w-4 h-4"/>} size="sm" className="w-full sm:w-auto">
             Atualizar
         </Button>
       </div>
@@ -187,44 +189,44 @@ const AdminMenuManagementPage: React.FC = () => {
         <p className="text-center py-4" style={{color: IFOOD_THEME_COLORS.red}}>{formError}</p>
       ) : dishes.length === 0 ? (
         <div className="text-center py-10 bg-white rounded-xl shadow-md">
-          <p className="text-lg" style={{color: IFOOD_THEME_COLORS.textSecondaryDark}}>Nenhum prato encontrado.</p>
-          <p className="text-sm" style={{color: IFOOD_THEME_COLORS.grayPlaceholder}}>Tente limpar os filtros ou adicionar novos pratos.</p>
+          <p className="text-md sm:text-lg" style={{color: IFOOD_THEME_COLORS.textSecondaryDark}}>Nenhum prato encontrado.</p>
+          <p className="text-xs sm:text-sm" style={{color: IFOOD_THEME_COLORS.grayPlaceholder}}>Tente limpar os filtros ou adicionar novos pratos.</p>
         </div>
       ) : (
         <div className="overflow-x-auto rounded-xl shadow-md" style={{backgroundColor: IFOOD_THEME_COLORS.white}}>
           <table className="min-w-full divide-y" style={{borderColor: IFOOD_THEME_COLORS.grayInputBorder}}>
             <thead style={{backgroundColor: IFOOD_THEME_COLORS.tableHeaderBg}}>
               <tr>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider" style={{color: IFOOD_THEME_COLORS.textSecondaryDark}}>Imagem</th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider" style={{color: IFOOD_THEME_COLORS.textSecondaryDark}}>Nome</th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider" style={{color: IFOOD_THEME_COLORS.textSecondaryDark}}>Categoria</th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider" style={{color: IFOOD_THEME_COLORS.textSecondaryDark}}>Preço</th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider" style={{color: IFOOD_THEME_COLORS.textSecondaryDark}}>Disponível</th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider" style={{color: IFOOD_THEME_COLORS.textSecondaryDark}}>Ações</th>
+                <th scope="col" className="px-3 py-2 sm:px-4 sm:py-3 text-left text-xs font-semibold uppercase tracking-wider" style={{color: IFOOD_THEME_COLORS.textSecondaryDark}}>Imagem</th>
+                <th scope="col" className="px-3 py-2 sm:px-4 sm:py-3 text-left text-xs font-semibold uppercase tracking-wider" style={{color: IFOOD_THEME_COLORS.textSecondaryDark}}>Nome</th>
+                <th scope="col" className="hidden md:table-cell px-3 py-2 sm:px-4 sm:py-3 text-left text-xs font-semibold uppercase tracking-wider" style={{color: IFOOD_THEME_COLORS.textSecondaryDark}}>Categoria</th>
+                <th scope="col" className="px-3 py-2 sm:px-4 sm:py-3 text-left text-xs font-semibold uppercase tracking-wider" style={{color: IFOOD_THEME_COLORS.textSecondaryDark}}>Preço</th>
+                <th scope="col" className="hidden sm:table-cell px-3 py-2 sm:px-4 sm:py-3 text-left text-xs font-semibold uppercase tracking-wider" style={{color: IFOOD_THEME_COLORS.textSecondaryDark}}>Disponível</th>
+                <th scope="col" className="px-3 py-2 sm:px-4 sm:py-3 text-left text-xs font-semibold uppercase tracking-wider" style={{color: IFOOD_THEME_COLORS.textSecondaryDark}}>Ações</th>
               </tr>
             </thead>
             <tbody className="divide-y" style={{borderColor: IFOOD_THEME_COLORS.grayInputBorder}}>
               {dishes.map((dish, index) => (
                 <tr key={dish.id} className={`transition-colors duration-200 ${index % 2 === 0 ? 'bg-white' : `bg-[${IFOOD_THEME_COLORS.tableRowHoverBg}]`} hover:bg-[${IFOOD_THEME_COLORS.pinkBgCategories}]/50`}>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <img src={dish.imageUrl} alt={dish.name} className="w-12 h-12 rounded-md object-cover transition-transform duration-300 hover:scale-110"/>
+                  <td className="px-3 py-2 sm:px-4 sm:py-3 whitespace-nowrap">
+                    <img src={dish.imageUrl} alt={dish.name} className="w-10 h-10 sm:w-12 sm:h-12 rounded-md object-cover transition-transform duration-300 hover:scale-110"/>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium" style={{color: IFOOD_THEME_COLORS.textPrimaryDark}}>{dish.name}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm" style={{color: IFOOD_THEME_COLORS.textSecondaryDark}}>{dish.categoryName || categories.find(c=>c.id === dish.categoryId)?.name}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm" style={{color: IFOOD_THEME_COLORS.textSecondaryDark}}>R$ {dish.price.toFixed(2)}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <span className={`px-2.5 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${
+                  <td className="px-3 py-2 sm:px-4 sm:py-3 whitespace-nowrap text-xs sm:text-sm font-medium" style={{color: IFOOD_THEME_COLORS.textPrimaryDark}}>{dish.name}</td>
+                  <td className="hidden md:table-cell px-3 py-2 sm:px-4 sm:py-3 whitespace-nowrap text-xs sm:text-sm" style={{color: IFOOD_THEME_COLORS.textSecondaryDark}}>{dish.categoryName || categories.find(c=>c.id === dish.categoryId)?.name}</td>
+                  <td className="px-3 py-2 sm:px-4 sm:py-3 whitespace-nowrap text-xs sm:text-sm" style={{color: IFOOD_THEME_COLORS.textSecondaryDark}}>R$ {dish.price.toFixed(2)}</td>
+                  <td className="hidden sm:table-cell px-3 py-2 sm:px-4 sm:py-3 whitespace-nowrap">
+                    <span className={`px-2 py-0.5 sm:px-2.5 sm:py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${
                       dish.available ? `bg-green-100 text-green-700` : `bg-red-100 text-red-700` 
                     }`}>
                       {dish.available ? 'Sim' : 'Não'}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-1">
-                    <Button variant="ghost" size="sm" onClick={() => openModalForEdit(dish)} aria-label="Editar" className={`p-1.5 hover:bg-[${IFOOD_THEME_COLORS.yellowAccent}]/30`}>
-                        <PencilIcon className={`w-4 h-4 text-yellow-500 hover:text-yellow-600 transition-colors duration-300`}/>
+                  <td className="px-3 py-2 sm:px-4 sm:py-3 whitespace-nowrap text-xs sm:text-sm font-medium space-x-1">
+                    <Button variant="ghost" size="xs" onClick={() => openModalForEdit(dish)} aria-label="Editar" className={`p-1 sm:p-1.5 hover:bg-[${IFOOD_THEME_COLORS.yellowAccent}]/30`}>
+                        <PencilIcon className={`w-3.5 h-3.5 sm:w-4 sm:h-4 text-yellow-500 hover:text-yellow-600 transition-colors duration-300`}/>
                     </Button>
-                    <Button variant="ghost" size="sm" onClick={() => handleDeleteDish(dish.id)} aria-label="Excluir" className={`p-1.5 hover:bg-[${IFOOD_THEME_COLORS.red}]/20`}>
-                        <TrashIcon className={`w-4 h-4 text-red-500 hover:text-[${IFOOD_THEME_COLORS.redHover}] transition-colors duration-300`}/>
+                    <Button variant="ghost" size="xs" onClick={() => handleDeleteDish(dish.id)} aria-label="Excluir" className={`p-1 sm:p-1.5 hover:bg-[${IFOOD_THEME_COLORS.red}]/20`}>
+                        <TrashIcon className={`w-3.5 h-3.5 sm:w-4 sm:h-4 text-red-500 hover:text-[${IFOOD_THEME_COLORS.redHover}] transition-colors duration-300`}/>
                     </Button>
                   </td>
                 </tr>
@@ -235,22 +237,22 @@ const AdminMenuManagementPage: React.FC = () => {
       )}
 
       {isModalOpen && currentDish && (
-        <Modal isOpen={isModalOpen} onClose={handleModalClose} title={isEditMode ? 'Editar Prato' : 'Novo Prato'} size="lg">
-          <form onSubmit={handleFormSubmit} className="space-y-5">
+        <Modal isOpen={isModalOpen} onClose={handleModalClose} title={isEditMode ? 'Editar Prato' : 'Novo Prato'} size="md"> {/* Use 'md' for mobile and sm+ by default for this modal */}
+          <form onSubmit={handleFormSubmit} className="space-y-4 sm:space-y-5">
             <Input label="Nome do Prato*" name="name" value={currentDish.name || ''} onChange={handleInputChange} required />
             <Textarea label="Descrição" name="description" value={currentDish.description || ''} onChange={handleInputChange} rows={3}/>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 <Input label="Preço (R$)*" name="price" type="number" value={currentDish.price || 0} onChange={handleInputChange} required step="0.01" min="0"/>
-                <Select label="Categoria*" name="categoryId" value={currentDish.categoryId || ''} onChange={handleInputChange} options={categoryOptions} required placeholder="Selecione uma categoria"/>
+                <Select label="Categoria*" name="categoryId" value={currentDish.categoryId || ''} onChange={handleInputChange} options={categoryOptions} required placeholder="Selecione"/>
             </div>
             
             <div>
-              <label className={`block text-sm font-medium mb-1 text-[${IFOOD_THEME_COLORS.textSecondaryDark}]`}>Imagem do Prato</label>
-              <div className="mt-1 flex items-center space-x-4">
-                {imagePreview && <img src={imagePreview} alt="Preview" className="w-24 h-24 rounded-lg object-cover border transition-all duration-300 hover:scale-105" style={{borderColor: IFOOD_THEME_COLORS.grayInputBorder}} />}
-                <label htmlFor="imageFile" className={`cursor-pointer bg-[${IFOOD_THEME_COLORS.lightGrayBg}] hover:bg-[${IFOOD_THEME_COLORS.grayInputBorder}] text-[${IFOOD_THEME_COLORS.textPrimaryDark}] font-medium py-2 px-4 rounded-lg text-sm inline-flex items-center transition-all duration-300 ease-in-out hover:scale-105 active:scale-95 border border-[${IFOOD_THEME_COLORS.grayInputBorder}]`}>
-                  <UploadIcon className="w-4 h-4 mr-2"/>
-                  {imageFile ? imageFile.name.substring(0,20)+'...' : (isEditMode ? 'Alterar Imagem' : 'Selecionar Imagem')}
+              <label className={`block text-xs sm:text-sm font-medium mb-1 text-[${IFOOD_THEME_COLORS.textSecondaryDark}]`}>Imagem do Prato</label>
+              <div className="mt-1 flex flex-col space-y-2 sm:flex-row sm:items-center sm:space-x-3 sm:space-y-0">
+                {imagePreview && <img src={imagePreview} alt="Preview" className="w-20 h-20 sm:w-24 sm:h-24 rounded-lg object-cover border transition-all duration-300 hover:scale-105" style={{borderColor: IFOOD_THEME_COLORS.grayInputBorder}} />}
+                <label htmlFor="imageFile" className={`cursor-pointer bg-[${IFOOD_THEME_COLORS.lightGrayBg}] hover:bg-[${IFOOD_THEME_COLORS.grayInputBorder}] text-[${IFOOD_THEME_COLORS.textPrimaryDark}] font-medium py-2 px-3 text-xs sm:text-sm inline-flex items-center transition-all duration-300 ease-in-out hover:scale-105 active:scale-95 border border-[${IFOOD_THEME_COLORS.grayInputBorder}] rounded-md`}>
+                  <UploadIcon className="w-4 h-4 mr-1.5 sm:mr-2"/>
+                  {imageFile ? imageFile.name.substring(0,15)+'...' : (isEditMode ? 'Alterar' : 'Selecionar')}
                 </label>
                 <input id="imageFile" name="imageFile" type="file" className="sr-only" onChange={handleImageChange} accept="image/*" />
               </div>
@@ -265,17 +267,17 @@ const AdminMenuManagementPage: React.FC = () => {
                 onChange={handleInputChange}
                 className={`h-4 w-4 rounded text-[${IFOOD_THEME_COLORS.red}] border-[${IFOOD_THEME_COLORS.grayInputBorder}] focus:ring-[${IFOOD_THEME_COLORS.red}] focus:ring-offset-0 transition-all duration-300`}
               />
-              <label htmlFor="available" className="ml-2 block text-sm" style={{color: IFOOD_THEME_COLORS.textSecondaryDark}}>
+              <label htmlFor="available" className="ml-2 block text-xs sm:text-sm" style={{color: IFOOD_THEME_COLORS.textSecondaryDark}}>
                 Disponível para venda
               </label>
             </div>
 
-            {formError && <p className="text-sm text-center" style={{color: IFOOD_THEME_COLORS.red}}>{formError}</p>}
+            {formError && <p className="text-xs sm:text-sm text-center" style={{color: IFOOD_THEME_COLORS.red}}>{formError}</p>}
             
-            <div className="flex justify-end space-x-3 pt-4">
-                <Button type="button" variant="outline" onClick={handleModalClose} size="md">Cancelar</Button>
-                <Button type="submit" variant="primary" isLoading={isSubmitting} size="md">
-                    {isEditMode ? 'Salvar Alterações' : 'Adicionar Prato'}
+            <div className="flex flex-col space-y-2 sm:flex-row sm:justify-end sm:space-x-3 sm:space-y-0 pt-3 sm:pt-4">
+                <Button type="button" variant="outline" onClick={handleModalClose} size="sm" className="w-full sm:w-auto">Cancelar</Button>
+                <Button type="submit" variant="primary" isLoading={isSubmitting} size="sm" className="w-full sm:w-auto">
+                    {isEditMode ? 'Salvar' : 'Adicionar'}
                 </Button>
             </div>
           </form>

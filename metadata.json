@@ -1,5 +1,6 @@
 {
   "name": "GourmetGo - Food Delivery",
   "description": "A comprehensive food ordering and management platform, allowing customers to browse menus and place orders, and enabling administrators and attendants to manage dishes, orders, and settings.",
-  "requestFramePermissions": []
+  "requestFramePermissions": [],
+  "prompt": ""
 }

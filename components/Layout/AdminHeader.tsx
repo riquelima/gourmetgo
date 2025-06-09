@@ -24,52 +24,52 @@ const AdminHeader: React.FC<AdminHeaderProps> = ({ setSidebarOpen, sidebarOpen }
       className="shadow-md sticky top-0 z-40" 
       style={{backgroundColor: IFOOD_THEME_COLORS.white, borderBottom: `1px solid ${IFOOD_THEME_COLORS.grayInputBorder}`}}
     >
-      <div className="px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+      <div className="px-3 sm:px-4 lg:px-8"> {/* Adjusted base padding */}
+        <div className="flex items-center justify-between h-14 sm:h-16">
           {/* Header: Left side */}
           <div className="flex">
             {/* Hamburger button */}
             <button
-              className={`p-1.5 rounded-md lg:hidden transition-all duration-300 ease-in-out hover:scale-110 active:scale-95 hover:bg-[${IFOOD_THEME_COLORS.pinkBgCategories}]`}
+              className={`p-1 rounded-md lg:hidden transition-all duration-300 ease-in-out hover:scale-110 active:scale-95 hover:bg-[${IFOOD_THEME_COLORS.pinkBgCategories}]`}
               style={{color: IFOOD_THEME_COLORS.textSecondaryDark}}
               aria-controls="sidebar"
               aria-expanded={sidebarOpen}
               onClick={(e) => { e.stopPropagation(); setSidebarOpen(!sidebarOpen); }}
             >
               <span className="sr-only">Open sidebar</span>
-              <MenuAlt2Icon className="w-6 h-6" />
+              <MenuAlt2Icon className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>
           </div>
 
           {/* Header: Right side */}
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-2 sm:space-x-3">
             <button 
-              className={`relative p-1.5 rounded-full transition-all duration-300 ease-in-out hover:scale-110 active:scale-95 hover:bg-[${IFOOD_THEME_COLORS.pinkBgCategories}]`} 
+              className={`relative p-1 sm:p-1.5 rounded-full transition-all duration-300 ease-in-out hover:scale-110 active:scale-95 hover:bg-[${IFOOD_THEME_COLORS.pinkBgCategories}]`} 
               style={{color: IFOOD_THEME_COLORS.textSecondaryDark}}
               aria-label="Notifications"
             >
-                <BellIcon className="w-6 h-6"/>
+                <BellIcon className="w-5 h-5 sm:w-6 sm:h-6"/>
                 <span 
-                  className="absolute top-0.5 right-0.5 block h-2.5 w-2.5 rounded-full ring-1 ring-white transition-transform duration-200" 
+                  className="absolute top-0 right-0 block h-2 w-2 sm:h-2.5 sm:w-2.5 rounded-full ring-1 ring-white transition-transform duration-200" 
                   style={{backgroundColor: IFOOD_THEME_COLORS.red }} 
                 ></span>
             </button>
             {user && (
               <div className="relative group">
                 <button 
-                  className={`flex items-center space-x-2 p-1.5 rounded-md transition-all duration-300 ease-in-out hover:scale-105 active:scale-95 hover:bg-[${IFOOD_THEME_COLORS.pinkBgCategories}]`}
+                  className={`flex items-center space-x-1 sm:space-x-2 p-1 sm:p-1.5 rounded-md transition-all duration-300 ease-in-out hover:scale-105 active:scale-95 hover:bg-[${IFOOD_THEME_COLORS.pinkBgCategories}]`}
                   style={{color: IFOOD_THEME_COLORS.textPrimaryDark }}
                 >
-                  <UserCircleIcon className={`w-7 h-7 text-[${IFOOD_THEME_COLORS.textSecondaryDark}] group-hover:text-[${IFOOD_THEME_COLORS.red}] transition-colors duration-300`} />
-                  <span className={`hidden md:block text-sm font-medium text-[${IFOOD_THEME_COLORS.textPrimaryDark}] group-hover:text-[${IFOOD_THEME_COLORS.red}] transition-colors duration-300`}>{user.name || user.email.split('@')[0]}</span>
+                  <UserCircleIcon className={`w-6 h-6 sm:w-7 sm:h-7 text-[${IFOOD_THEME_COLORS.textSecondaryDark}] group-hover:text-[${IFOOD_THEME_COLORS.red}] transition-colors duration-300`} />
+                  <span className={`hidden sm:block text-xs sm:text-sm font-medium text-[${IFOOD_THEME_COLORS.textPrimaryDark}] group-hover:text-[${IFOOD_THEME_COLORS.red}] transition-colors duration-300`}>{user.name || user.email.split('@')[0]}</span>
                 </button>
                 <div 
-                    className="absolute right-0 mt-2 w-48 bg-white border rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out z-50 origin-top-right"
+                    className="absolute right-0 mt-2 w-36 sm:w-48 bg-white border rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out z-50 origin-top-right"
                     style={{borderColor: IFOOD_THEME_COLORS.grayInputBorder}}
                 >
                   <button
                     onClick={handleLogout}
-                    className="block px-4 py-2.5 text-sm w-full text-left transition-all duration-300 ease-in-out flex items-center space-x-2 hover:scale-105 active:scale-95"
+                    className="block px-3 py-2 sm:px-4 sm:py-2.5 text-xs sm:text-sm w-full text-left transition-all duration-300 ease-in-out flex items-center space-x-2 hover:scale-105 active:scale-95"
                     style={{ color: IFOOD_THEME_COLORS.textPrimaryDark }}
                     onMouseEnter={e => {e.currentTarget.style.backgroundColor = IFOOD_THEME_COLORS.red; e.currentTarget.style.color = IFOOD_THEME_COLORS.white;}}
                     onMouseLeave={e => {e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = IFOOD_THEME_COLORS.textPrimaryDark;}}

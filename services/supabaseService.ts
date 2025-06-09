@@ -16,16 +16,16 @@ let mockCategories: Category[] = [
 ];
 
 let mockDishes: Dish[] = [
-  { id: 'dish1', name: 'Bruschetta Clássica', description: 'Pão italiano tostado com tomates frescos, alho, manjericão e azeite extra virgem.', price: 25.00, imageUrl: 'https://picsum.photos/seed/bruschetta/400/300', available: true, categoryId: 'cat1', categoryName: 'Entradas' },
-  { id: 'dish2', name: 'Salada Caprese', description: 'Fatias de tomate fresco, mussarela de búfala e manjericão, regados com azeite balsâmico.', price: 30.00, imageUrl: 'https://picsum.photos/seed/caprese/400/300', available: true, categoryId: 'cat1', categoryName: 'Entradas' },
-  { id: 'dish3', name: 'Filé Mignon ao Molho Madeira', description: 'Medalhões de filé mignon grelhados, cobertos com molho madeira e acompanhados de risoto de parmesão.', price: 75.00, imageUrl: 'https://picsum.photos/seed/filemignon/400/300', available: true, categoryId: 'cat2', categoryName: 'Pratos Principais' },
-  { id: 'dish4', name: 'Salmão Grelhado com Legumes', description: 'Posta de salmão fresco grelhado na perfeição, servido com uma seleção de legumes da estação.', price: 68.00, imageUrl: 'https://picsum.photos/seed/salmon/400/300', available: true, categoryId: 'cat2', categoryName: 'Pratos Principais' },
-  { id: 'dish5', name: 'Risoto de Camarão', description: 'Arroz arbóreo cremoso com camarões frescos, tomate cereja e um toque de limão siciliano.', price: 72.00, imageUrl: 'https://picsum.photos/seed/risotto/400/300', available: false, categoryId: 'cat2', categoryName: 'Pratos Principais' },
-  { id: 'dish6', name: 'Tiramisù Italiano', description: 'Sobremesa italiana clássica com camadas de biscoitos champagne embebidos em café, creme de mascarpone e cacau em pó.', price: 35.00, imageUrl: 'https://picsum.photos/seed/tiramisu/400/300', available: true, categoryId: 'cat3', categoryName: 'Sobremesas' },
-  { id: 'dish7', name: 'Petit Gateau com Sorvete', description: 'Bolo de chocolate com interior cremoso, servido quente com uma bola de sorvete de creme.', price: 32.00, imageUrl: 'https://picsum.photos/seed/petitgateau/400/300', available: true, categoryId: 'cat3', categoryName: 'Sobremesas' },
-  { id: 'dish8', name: 'Água Mineral (500ml)', description: 'Água mineral natural sem gás.', price: 5.00, imageUrl: 'https://picsum.photos/seed/water/400/300', available: true, categoryId: 'cat4', categoryName: 'Bebidas' },
-  { id: 'dish9', name: 'Refrigerante Lata (350ml)', description: 'Coca-Cola, Guaraná Antarctica ou Fanta Laranja.', price: 7.00, imageUrl: 'https://picsum.photos/seed/soda/400/300', available: true, categoryId: 'cat4', categoryName: 'Bebidas' },
-  { id: 'dish10', name: 'Suco Natural (300ml)', description: 'Laranja, Limão, Abacaxi com Hortelã.', price: 10.00, imageUrl: 'https://picsum.photos/seed/juice/400/300', available: true, categoryId: 'cat4', categoryName: 'Bebidas' },
+  { id: 'dish1', name: 'Bruschetta Clássica', description: 'Pão italiano tostado com tomates frescos, alho, manjericão e azeite extra virgem.', price: 25.00, imageUrl: 'https://raw.githubusercontent.com/riquelima/gourmetgo/refs/heads/main/Bruschetta%20Cl%C3%A1ssica.png', available: true, categoryId: 'cat1', categoryName: 'Entradas' },
+  { id: 'dish2', name: 'Salada Caprese', description: 'Fatias de tomate fresco, mussarela de búfala e manjericão, regados com azeite balsâmico.', price: 30.00, imageUrl: 'https://raw.githubusercontent.com/riquelima/gourmetgo/refs/heads/main/Salada%20Caprese.png', available: true, categoryId: 'cat1', categoryName: 'Entradas' },
+  { id: 'dish3', name: 'Filé Mignon ao Molho Madeira', description: 'Medalhões de filé mignon grelhados, cobertos com molho madeira e acompanhados de risoto de parmesão.', price: 75.00, imageUrl: 'https://raw.githubusercontent.com/riquelima/gourmetgo/refs/heads/main/Fil%C3%A9%20Mignon%20ao%20Molho%20Madeira.png', available: true, categoryId: 'cat2', categoryName: 'Pratos Principais' },
+  { id: 'dish4', name: 'Salmão Grelhado com Legumes', description: 'Posta de salmão fresco grelhado na perfeição, servido com uma seleção de legumes da estação.', price: 68.00, imageUrl: 'https://raw.githubusercontent.com/riquelima/gourmetgo/refs/heads/main/Salm%C3%A3o%20Grelhado%20com%20Legumes.png', available: true, categoryId: 'cat2', categoryName: 'Pratos Principais' },
+  { id: 'dish5', name: 'Risoto de Camarão', description: 'Arroz arbóreo cremoso com camarões frescos, tomate cereja e um toque de limão siciliano.', price: 72.00, imageUrl: 'https://raw.githubusercontent.com/riquelima/gourmetgo/refs/heads/main/Risoto%20de%20Camar%C3%A3o.png', available: true, categoryId: 'cat2', categoryName: 'Pratos Principais' },
+  { id: 'dish6', name: 'Tiramisù Italiano', description: 'Sobremesa italiana clássica com camadas de biscoitos champagne embebidos em café, creme de mascarpone e cacau em pó.', price: 35.00, imageUrl: 'https://raw.githubusercontent.com/riquelima/gourmetgo/refs/heads/main/Tiramis%C3%B9%20Italiano.png', available: true, categoryId: 'cat3', categoryName: 'Sobremesas' },
+  { id: 'dish7', name: 'Petit Gateau com Sorvete', description: 'Bolo de chocolate com interior cremoso, servido quente com uma bola de sorvete de creme.', price: 32.00, imageUrl: 'https://raw.githubusercontent.com/riquelima/gourmetgo/refs/heads/main/Petit%20Gateau%20com%20Sorvete.png', available: true, categoryId: 'cat3', categoryName: 'Sobremesas' },
+  { id: 'dish8', name: 'Água Mineral (500ml)', description: 'Água mineral natural sem gás.', price: 5.00, imageUrl: 'https://raw.githubusercontent.com/riquelima/gourmetgo/refs/heads/main/%C3%81gua%20Mineral%20(500ml).png', available: true, categoryId: 'cat4', categoryName: 'Bebidas' },
+  { id: 'dish9', name: 'Refrigerante Lata (350ml)', description: 'Coca-Cola, Guaraná Antarctica ou Fanta Laranja.', price: 7.00, imageUrl: 'https://raw.githubusercontent.com/riquelima/gourmetgo/refs/heads/main/Refrigerante%20Lata.png', available: true, categoryId: 'cat4', categoryName: 'Bebidas' },
+  { id: 'dish10', name: 'Suco Natural (300ml)', description: 'Laranja, Limão, Abacaxi com Hortelã.', price: 10.00, imageUrl: 'https://raw.githubusercontent.com/riquelima/gourmetgo/refs/heads/main/Suco%20Natural.png', available: true, categoryId: 'cat4', categoryName: 'Bebidas' },
 ];
 
 let mockOrders: Order[] = [
@@ -73,8 +73,8 @@ export const supabaseService = {
   // Auth
   signInWithEmail: async (email: string, pass: string): Promise<User | null> => {
     await simulateDelay(null);
-    const user = mockUsers.find(u => u.email === email); // Pass check is mocked
-    if (user) {
+    const user = mockUsers.find(u => u.email === email);
+    if (user && pass === "1234") { // Check for password "1234"
       // Store something to persist login state for mock
       localStorage.setItem('gourmetgo-currentUser', JSON.stringify(user));
       return user;

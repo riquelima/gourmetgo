@@ -63,14 +63,14 @@ const AdminSettingsPage: React.FC = () => {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <h1 className="text-2xl md:text-3xl font-semibold mb-6 md:mb-8" style={{color: IFOOD_THEME_COLORS.textPrimaryDark}}>Configurações Gerais</h1>
-      {error && <p className="p-3 rounded-lg mb-4 text-sm bg-red-50 border border-red-200" style={{ color: IFOOD_THEME_COLORS.red}}>{error}</p>}
-      {successMessage && <p className="p-3 rounded-lg mb-4 text-sm bg-green-50 border border-green-200" style={{ color: IFOOD_THEME_COLORS.greenBanner}}>{successMessage}</p>}
+      <h1 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-5 sm:mb-6 md:mb-8" style={{color: IFOOD_THEME_COLORS.textPrimaryDark}}>Configurações Gerais</h1>
+      {error && <p className="p-2.5 sm:p-3 rounded-lg mb-3 sm:mb-4 text-xs sm:text-sm bg-red-50 border border-red-200" style={{ color: IFOOD_THEME_COLORS.red}}>{error}</p>}
+      {successMessage && <p className="p-2.5 sm:p-3 rounded-lg mb-3 sm:mb-4 text-xs sm:text-sm bg-green-50 border border-green-200" style={{ color: IFOOD_THEME_COLORS.greenBanner}}>{successMessage}</p>}
       
-      <form onSubmit={handleSubmit} className="p-6 md:p-8 rounded-xl shadow-xl space-y-6" style={{backgroundColor: IFOOD_THEME_COLORS.white}}>
+      <form onSubmit={handleSubmit} className="p-4 sm:p-6 md:p-8 rounded-xl shadow-xl space-y-5 sm:space-y-6" style={{backgroundColor: IFOOD_THEME_COLORS.white}}>
         <div>
-          <h2 className="text-lg md:text-xl font-semibold pb-2 mb-4" style={{color: IFOOD_THEME_COLORS.textPrimaryDark, borderBottom: `1px solid ${IFOOD_THEME_COLORS.grayInputBorder}`}}>Horário de Funcionamento</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <h2 className="text-md sm:text-lg md:text-xl font-semibold pb-2 mb-3 sm:mb-4" style={{color: IFOOD_THEME_COLORS.textPrimaryDark, borderBottom: `1px solid ${IFOOD_THEME_COLORS.grayInputBorder}`}}>Horário de Funcionamento</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             <Input
               label="Horário de Abertura"
               type="time"
@@ -89,7 +89,7 @@ const AdminSettingsPage: React.FC = () => {
         </div>
 
         <div>
-          <h2 className="text-lg md:text-xl font-semibold pb-2 mb-3" style={{color: IFOOD_THEME_COLORS.textPrimaryDark, borderBottom: `1px solid ${IFOOD_THEME_COLORS.grayInputBorder}`}}>Status da Loja</h2>
+          <h2 className="text-md sm:text-lg md:text-xl font-semibold pb-2 mb-2 sm:mb-3" style={{color: IFOOD_THEME_COLORS.textPrimaryDark, borderBottom: `1px solid ${IFOOD_THEME_COLORS.grayInputBorder}`}}>Status da Loja</h2>
           <div className="flex items-center mt-1">
             <input
               id="isStoreOpenManual"
@@ -99,17 +99,17 @@ const AdminSettingsPage: React.FC = () => {
               onChange={handleInputChange}
               className={`h-4 w-4 rounded text-[${IFOOD_THEME_COLORS.red}] border-[${IFOOD_THEME_COLORS.grayInputBorder}] focus:ring-[${IFOOD_THEME_COLORS.red}] focus:ring-offset-0 transition-all duration-300`}
             />
-            <label htmlFor="isStoreOpenManual" className="ml-3 block text-sm font-medium" style={{color: IFOOD_THEME_COLORS.textSecondaryDark}}>
+            <label htmlFor="isStoreOpenManual" className="ml-2 sm:ml-3 block text-xs sm:text-sm font-medium" style={{color: IFOOD_THEME_COLORS.textSecondaryDark}}>
               Loja aberta para pedidos (controle manual)
             </label>
           </div>
           <p className="text-xs mt-1" style={{color: IFOOD_THEME_COLORS.grayPlaceholder}}>
-            Desmarque para fechar a loja temporariamente, independente do horário de funcionamento.
+            Desmarque para fechar a loja temporariamente.
           </p>
         </div>
 
         <div>
-          <h2 className="text-lg md:text-xl font-semibold pb-2 mb-3" style={{color: IFOOD_THEME_COLORS.textPrimaryDark, borderBottom: `1px solid ${IFOOD_THEME_COLORS.grayInputBorder}`}}>Taxa de Entrega</h2>
+          <h2 className="text-md sm:text-lg md:text-xl font-semibold pb-2 mb-2 sm:mb-3" style={{color: IFOOD_THEME_COLORS.textPrimaryDark, borderBottom: `1px solid ${IFOOD_THEME_COLORS.grayInputBorder}`}}>Taxa de Entrega</h2>
           <Input
             label="Taxa de Entrega Fixa (R$)"
             type="number"
@@ -121,9 +121,9 @@ const AdminSettingsPage: React.FC = () => {
           />
         </div>
 
-        <div className="pt-4 text-right">
-          <Button type="submit" variant="primary" size="lg" isLoading={saving} leftIcon={<SaveIcon className="w-5 h-5"/>}>
-            {saving ? 'Salvando...' : 'Salvar Configurações'}
+        <div className="pt-3 sm:pt-4 text-right">
+          <Button type="submit" variant="primary" size="md" isLoading={saving} leftIcon={<SaveIcon className="w-4 h-4 sm:w-5 sm:h-5"/>}>
+            {saving ? 'Salvando...' : 'Salvar'}
           </Button>
         </div>
       </form>

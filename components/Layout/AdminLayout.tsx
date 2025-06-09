@@ -20,7 +20,7 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
       <div className="flex-1 flex flex-col overflow-hidden">
         <AdminHeader setSidebarOpen={setSidebarOpen} sidebarOpen={sidebarOpen} />
         <main 
-            className="flex-1 overflow-x-hidden overflow-y-auto p-4 md:p-6 lg:p-8"
+            className="flex-1 overflow-x-hidden overflow-y-auto p-3 sm:p-4 md:p-6 lg:p-8" // Adjusted base padding
             style={{backgroundColor: IFOOD_THEME_COLORS.adminLightGrayBg}} // Main content area background
         >
           {children}

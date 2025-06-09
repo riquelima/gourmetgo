@@ -15,7 +15,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
       style={{ backgroundColor: IFOOD_THEME_COLORS.lightGrayBg, color: IFOOD_THEME_COLORS.textPrimaryDark }}
     >
       <Header />
-      <main className="flex-grow container mx-auto px-4 py-6 md:py-8">
+      <main className="flex-grow container mx-auto px-4 md:px-8 py-4 sm:py-6 md:py-8"> {/* Adjusted padding */}
         {children}
       </main>
       <Footer />

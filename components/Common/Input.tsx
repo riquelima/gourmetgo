@@ -17,11 +17,12 @@ const Input: React.FC<InputProps> = ({ label, name, error, icon, className, cont
   const inputBaseStyle = `
     form-input
     w-full 
-    py-2.5 pr-3
-    rounded-lg 
+    py-2 pr-4 sm:py-2.5 sm:pr-4 
+    rounded-md 
+    shadow-sm 
     focus:ring-2 focus:border-transparent
     transition-all duration-300 ease-in-out
-    text-base
+    text-sm sm:text-base 
     text-[${IFOOD_THEME_COLORS.textPrimaryDark}] bg-[${IFOOD_THEME_COLORS.white}] 
     border ${error ? 'border-red-500' : `border-[${IFOOD_THEME_COLORS.grayInputBorder}]`} 
     focus:ring-[${IFOOD_THEME_COLORS.red}]
@@ -31,14 +32,14 @@ const Input: React.FC<InputProps> = ({ label, name, error, icon, className, cont
   return (
     <div className={`w-full ${containerClassName || ''}`}>
       {label && (
-        <label htmlFor={name} className={`block text-sm font-medium mb-1 text-[${IFOOD_THEME_COLORS.textSecondaryDark}]`}>
+        <label htmlFor={name} className={`block text-xs sm:text-sm font-medium mb-1 text-[${IFOOD_THEME_COLORS.textSecondaryDark}]`}>
           {label}
         </label>
       )}
       <div className="relative">
         {icon && (
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            {React.cloneElement(icon, { className: `h-5 w-5 text-[${IFOOD_THEME_COLORS.grayPlaceholder}]` })}
+            {React.cloneElement(icon, { className: `h-4 w-4 sm:h-5 sm:w-5 text-[${IFOOD_THEME_COLORS.grayPlaceholder}]` })}
           </div>
         )}
         <input
@@ -46,7 +47,7 @@ const Input: React.FC<InputProps> = ({ label, name, error, icon, className, cont
           name={name}
           className={`
             ${inputBaseStyle}
-            ${icon ? 'pl-10' : 'pl-4'}
+            ${icon ? 'pl-10 sm:pl-10' : 'pl-4 sm:pl-4'}
             ${className}
           `}
           {...props}
@@ -67,11 +68,12 @@ export const Textarea: React.FC<TextareaProps> = ({ label, name, error, classNam
   const textareaBaseStyle = `
     form-textarea
     w-full 
-    py-2.5 px-4
-    rounded-lg 
+    py-2 px-3 sm:py-2.5 sm:px-4
+    rounded-md 
+    shadow-sm
     focus:ring-2 focus:border-transparent
     transition-all duration-300 ease-in-out
-    text-base
+    text-sm sm:text-base
     text-[${IFOOD_THEME_COLORS.textPrimaryDark}] bg-[${IFOOD_THEME_COLORS.white}] 
     border ${error ? 'border-red-500' : `border-[${IFOOD_THEME_COLORS.grayInputBorder}]`} 
     focus:ring-[${IFOOD_THEME_COLORS.red}]
@@ -81,7 +83,7 @@ export const Textarea: React.FC<TextareaProps> = ({ label, name, error, classNam
   return (
     <div className={`w-full ${containerClassName || ''}`}>
       {label && (
-        <label htmlFor={name} className={`block text-sm font-medium mb-1 text-[${IFOOD_THEME_COLORS.textSecondaryDark}]`}>
+        <label htmlFor={name} className={`block text-xs sm:text-sm font-medium mb-1 text-[${IFOOD_THEME_COLORS.textSecondaryDark}]`}>
           {label}
         </label>
       )}
@@ -112,12 +114,13 @@ export const Select: React.FC<SelectProps> = ({ label, name, error, options, cla
   const selectBaseStyle = `
     form-select
     w-full 
-    py-2.5 pl-4 pr-10
-    rounded-lg 
+    py-2 pl-3 pr-8 sm:py-2.5 sm:pl-4 sm:pr-10
+    rounded-md 
+    shadow-sm
     focus:ring-2 focus:border-transparent
     transition-all duration-300 ease-in-out
     appearance-none 
-    text-base
+    text-sm sm:text-base
     text-[${IFOOD_THEME_COLORS.textPrimaryDark}] bg-[${IFOOD_THEME_COLORS.white}] 
     border ${error ? 'border-red-500' : `border-[${IFOOD_THEME_COLORS.grayInputBorder}]`} 
     focus:ring-[${IFOOD_THEME_COLORS.red}]
@@ -127,7 +130,7 @@ export const Select: React.FC<SelectProps> = ({ label, name, error, options, cla
   return (
     <div className={`w-full ${containerClassName || ''}`}>
       {label && (
-        <label htmlFor={name} className={`block text-sm font-medium mb-1 text-[${IFOOD_THEME_COLORS.textSecondaryDark}]`}>
+        <label htmlFor={name} className={`block text-xs sm:text-sm font-medium mb-1 text-[${IFOOD_THEME_COLORS.textSecondaryDark}]`}>
           {label}
         </label>
       )}
@@ -137,7 +140,7 @@ export const Select: React.FC<SelectProps> = ({ label, name, error, options, cla
           name={name}
           className={`
             ${selectBaseStyle}
-            ${props.value ? '' : 'text-gray-500'} /* Style placeholder text if no value selected */
+            ${props.value ? '' : `text-[${IFOOD_THEME_COLORS.grayPlaceholder}]`}
             ${className}
           `}
           {...props}
@@ -147,8 +150,8 @@ export const Select: React.FC<SelectProps> = ({ label, name, error, options, cla
             <option key={option.value} value={option.value} className="text-gray-800">{option.label}</option>
           ))}
         </select>
-        <div className={`absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-[${IFOOD_THEME_COLORS.grayPlaceholder}]`}>
-          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+        <div className={`absolute inset-y-0 right-0 pr-2 sm:pr-3 flex items-center pointer-events-none text-[${IFOOD_THEME_COLORS.grayPlaceholder}]`}>
+          <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 20 20">
             <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
           </svg>
         </div>

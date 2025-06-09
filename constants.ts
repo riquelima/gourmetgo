@@ -26,8 +26,8 @@ export const IFOOD_THEME_COLORS = {
   yellowAccent: '#FFE070', // For icons, secondary highlights, or specific statuses
   orangeButtonBanner: '#F66A0A', // For secondary buttons or banners
   greenBanner: '#45B86F', // For success states or promotional banners
-  lightGrayBg: '#F6F6F6', // Main background for PUBLIC pages
-  adminLightGrayBg: '#F9FAFB', // Tailwind gray-50, for ADMIN page backgrounds
+  lightGrayBg: '#F7F7F7', // Main background for PUBLIC pages - UPDATED
+  adminLightGrayBg: '#F7F7F7', // Tailwind gray-50, for ADMIN page backgrounds - UPDATED
   textPrimaryDark: '#1F2937', // Tailwind gray-800, Primary text on light backgrounds
   textSecondaryDark: '#4B5563', // Tailwind gray-600, Secondary text on light backgrounds
   white: '#FFFFFF', // Card backgrounds, clean areas

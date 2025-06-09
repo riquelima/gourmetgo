@@ -18,10 +18,10 @@ const CategoryChip: React.FC<CategoryChipProps> = ({ name, isActive, onClick }) 
     <button
       onClick={onClick}
       className={`
-        px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 ease-in-out
+        px-4 py-2 rounded-md text-xs sm:text-sm font-medium transition-all duration-300 ease-in-out
         focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 
         focus-visible:ring-[${IFOOD_THEME_COLORS.red}]
-        flex items-center space-x-2 whitespace-nowrap min-w-[100px] justify-center shadow-sm hover:shadow-md
+        flex items-center space-x-1.5 sm:space-x-2 whitespace-nowrap min-w-[80px] sm:min-w-[100px] justify-center shadow-sm hover:shadow-md
         hover:scale-105 active:scale-95
         ${isActive ? activeClasses : inactiveClasses}
       `}
